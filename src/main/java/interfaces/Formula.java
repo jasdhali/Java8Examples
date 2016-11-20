@@ -1,5 +1,6 @@
 package interfaces;
 
+//@FunctionalInterface
 public interface Formula {
 	double calculate(int a);
 	

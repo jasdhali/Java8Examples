@@ -16,6 +16,13 @@ public class Book {
 		this.price = price;
 		this.author = author;
 	}
+	
+	public Book(String iSBN, float price, String fisrtName, String lastName, String surname, int age) {
+		super();
+		ISBN = iSBN;
+		this.price = price;
+		this.author = new Author(fisrtName, lastName, surname, age);
+	}	
 
 	public String getISBN() {
 		return ISBN;

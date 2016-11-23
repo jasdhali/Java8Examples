@@ -1,13 +1,23 @@
 package model;
 
+import java.util.Date;
+
 public class Book {
 	private String ISBN;
 	private float price;
 	private Author author;
+	private Date publishDate;
 
 	public Book() {
 		super();
-		// TODO Auto-generated constructor stub
+	}
+	
+	public Book(String iSBN, float price, Author author, Date publishDate) {
+		super();
+		ISBN = iSBN;
+		this.price = price;
+		this.author = author;
+		this.publishDate = publishDate;
 	}
 
 	public Book(String iSBN, float price, Author author) {

@@ -4,15 +4,38 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class CompositeTwoLevelStream {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		List<String> simpleList = new ArrayList<>(); 
+		simpleList.add( "Apple");
+		simpleList.add( "Banana");
+		simpleList.add( "Apple");
+		simpleList.add( "Apple");
+		simpleList.add( "Banana");
+		simpleList.stream().forEach( System.out::println ); //Simple printing using new line.
+		// Try to get a map from above collection such that map contains type of fruit and its count.
+		Map<String, Long> groupingCountByType = simpleList.stream().collect( 	Collectors.groupingBy(Function.identity() , Collectors.counting() ) ); 
+		System.out.println(groupingCountByType);
 		System.out.println( DataGenerator.getData() );
+		//Below is a list of all SKUS as a list of Object
+		List<Object> list = DataGenerator.getData().stream().map( (Map<String,Object> mp)->mp.get("sku") ).
+				collect(Collectors.toList());
+		System.out.println( list );
 		
+		//Find total of all coupons.
+		List<Object> countAmounts = DataGenerator.getData().stream().map( (Map<String,Object> mp)->mp.get("amount")).
+				collect(Collectors.toList());
+		countAmounts.stream().forEach(System.out::println);
+		
+		//
+		//DataGenerator.getData().stream().filter( (Map<String,Object> mp) -> mp.get("type").equals("MT")).mapToLong( Object::toString);
+		
+		//Simple list 
 	}
-	
 }
 
 class  DataGenerator{

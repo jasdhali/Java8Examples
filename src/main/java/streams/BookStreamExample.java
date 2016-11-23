@@ -16,20 +16,20 @@ public class BookStreamExample {
 	public static List<Book> getData(){
 		
 		List<Book> list = new ArrayList<Book>();
-		list.add( new Book("1234", 21.50f, "Jaspal","Dhaliwal","Singh",45));
-		list.add( new Book("2345", 31.50f, "John","Victor","Benegal",55));
-		list.add( new Book("3456", 41.50f, "Mohit","Kumar","Sharma",45));
+		list.add( new Book("1234", 21.50f, new Author("Jaspal","Dhaliwal","Singh",45)));
+		list.add( new Book("2345", 31.50f, new Author("John","Victor","Benegal",55)));
+		list.add( new Book("3456", 41.50f, new Author("Mohit","Kumar","Sharma",45)));
 		return list;
 	}
+	
 	
 	public static void main(String[] args) {
 		//get list of all authors whoc are > 50 Uppercase
 		
-		
 		//find average age of all the authors
 		//(filter, reducing function , return type float)
 	    Stream<Book> dataStream = getData().stream();
-	    List listAges=dataStream.map( book-> book.getAuthor()).filter(author -> author.getAge() < 50).map(Author ::getAge).collect(Collectors.toList());
+	    List<Integer> listAges=dataStream.map( book-> book.getAuthor()).filter(author -> author.getAge() < 50).map(Author ::getAge).collect(Collectors.toList());
 		System.out.println( "create new list of all author names who are > 50" +listAges );
 		//find total number of books whose price is > $20
 		
